@@ -15,22 +15,31 @@
 
 // 1. Перетворення типів
 //a
-let apples = 34;
-let cartUser = String(apples);
-console.log(cartUser)
-console.log(typeof cartUser)
+// let apples = 34;
+// let cartUser = String(apples);
+// console.log(cartUser)
+// console.log(typeof cartUser)
 
-//b 
-let users = Number(cartUser)
-console.log(users)
-console.log(typeof users)
+// //b 
+// let users = Number(cartUser)
+// console.log(users)
+// console.log(typeof users)
 
-//c
-let hasAccess = Boolean(users)
-console.log(hasAccess)
-console.log(typeof hasAccess)
+// //c
+// let hasAccess = Boolean(users)
+// console.log(hasAccess)
+// console.log(typeof hasAccess)
 
 // 2. Конвертер валют
 
-let rate = 37.90;
-let convert = prompt("Ведіть потрібну суму для конвертації  ")
+// let rate = 38.40;
+// let enterSum = prompt("Ведіть потрібну суму в грн для конвертації  ");
+// let resultConversion = enterSum / rate;
+// console.log(`Ви отримуєте: ${+resultConversion.toFixed(2)} $`)
+
+// 3. Обчислення вартості бензину
+
+// let enterAmountGasoline = prompt("Ведіть потрібну кількість літрів  ");
+// let enterPriceGasoline = prompt("Ведіть ціну за літр ");
+// let totalSum = enterAmountGasoline * enterPriceGasoline;
+// console.log(`До сплати потрібно внести: ${+totalSum.toFixed(2)} грн.`)
