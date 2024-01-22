@@ -3,20 +3,22 @@
 // a. додавання
 let a = 9;
 let b = 3;
-console.log(`додавання ${a + b}`)
+
+totalBooks = a + b;
+console.log(`додавання ${totalBooks}`)
 
 // b. віднімання
-
-console.log(`віднімання ${a - b}`)
+totalApples = a - b;
+console.log(`віднімання ${totalApples}`)
 
 // c. множення
-
-console.log(`множення ${a * b}`)
+totalBoxsOfPhone = a * b;
+console.log(`множення ${totalBoxsOfPhone}`)
 
 // d. ділення
-
-console.log(`ділення ${a / b}`)
+totalTshirts = a / b;
+console.log(`ділення ${totalTshirts}`)
 
 // e. зведення в ступінь
-
-console.log(`зведення в ступінь ${a ** b}`)
+totalData = a ** b;
+console.log(`зведення в ступінь ${totalData}`)

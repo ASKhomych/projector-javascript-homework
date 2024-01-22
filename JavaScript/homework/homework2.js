@@ -32,12 +32,12 @@ console.log(typeof hasAccess)
 
 // 2. Конвертер валют
 
-let rate = 38.40;
+const rate = 38.40;
 let enterSum = prompt("Ведіть потрібну суму в грн для конвертації  ");
 let resultConversion = enterSum / rate;
 console.log(`Ви отримуєте: ${+resultConversion.toFixed(2)} $`)
 
-// let rate = 38.40;
+// const rate = 38.40;
 // let enterSum = prompt("Ведіть потрібну суму в грн для конвертації  ");
 // console.log(`Ви отримуєте: ${Math.round((enterSum / rate) * 100) / 100} $`)
 
