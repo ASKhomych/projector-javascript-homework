@@ -4,21 +4,21 @@
 let a = 9;
 let b = 3;
 
-totalBooks = a + b;
-console.log(`додавання ${totalBooks}`)
+total = a + b;
+console.log(`додавання ${total}`)
 
 // b. віднімання
-totalApples = a - b;
-console.log(`віднімання ${totalApples}`)
+remain = a - b;
+console.log(`віднімання ${remain}`)
 
 // c. множення
-totalBoxsOfPhone = a * b;
-console.log(`множення ${totalBoxsOfPhone}`)
+multiplication = a * b;
+console.log(`множення ${multiplication}`)
 
 // d. ділення
-totalTshirts = a / b;
-console.log(`ділення ${totalTshirts}`)
+division = a / b;
+console.log(`ділення ${division}`)
 
 // e. зведення в ступінь
-totalData = a ** b;
-console.log(`зведення в ступінь ${totalData}`)
+exponentiation = a ** b;
+console.log(`зведення в ступінь ${exponentiation}`)
