@@ -15,10 +15,11 @@
 // 2. Задача на знаходження добутку масиву чисел з невідомою глибиною вкладеності:
 
 // const resultsArray = [1, 2, [3, [4]]];
-// let productOfArray = resultsArray.flat(Infinity);
-// let sum = 1;
-// for (let product of productOfArray){
-//     sum *= product;
+// let flattenArray = resultsArray.flat(Infinity)
+// let productOfArray = 1;
+// for (let product of flattenArray){
+//     productOfArray *= product;
 // }
 
-// console.log(sum); // 24 
+// console.log(productOfArray); // 24 
+// console.log(typeof productOfArray);
