@@ -14,12 +14,11 @@ const priceData = {
     oRAngGEs: '48.7584',
   };
   
-  let updatedPriceData = priceData {
-    for(let key in updatedPriceData){
-      
-    } 
-  };
-  
-//   // ваш код
-  
-//   console.log(updatedPriceData) // {apples: '23.40', bananas: '48.00', oranges: '48.76'}
+  let updatedPriceData = {};
+    for (let key in priceData) {
+      let lowerCaseKey = key.toLowerCase();
+      let fixedPrice = parseFloat(priceData[key]).toFixed(2);
+      updatedPriceData[lowerCaseKey] = fixedPrice;
+   };
+
+  console.log(updatedPriceData) // {apples: '23.40', bananas: '48.00', oranges: '48.76'}
