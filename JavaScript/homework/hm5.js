@@ -16,9 +16,8 @@ const priceData = {
   
   let updatedPriceData = {};
     for (let key in priceData) {
-      let lowerCaseKey = key.toLowerCase();
       let fixedPrice = parseFloat(priceData[key]).toFixed(2);
-      updatedPriceData[lowerCaseKey] = fixedPrice;
+      updatedPriceData[key.toLowerCase()] = fixedPrice;
    };
 
   console.log(updatedPriceData) // {apples: '23.40', bananas: '48.00', oranges: '48.76'}
