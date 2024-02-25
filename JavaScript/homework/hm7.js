@@ -21,17 +21,16 @@ const priceData = {
     Apples: '23.4',
     BANANAS: '48',
     oRAngGEs: '48.7584',
-}
+};
 
 function optimizer(data) {
-    let updatedPriceData = {};
-    for (const [key, value] of Object.entries(data)) {
-        updatedPriceData[key.toLowerCase()] = parseFloat(value).toFixed(2);
-    }
+    const updatedPriceData = Object.fromEntries(
+        Object.entries(data).map(([key, value]) => [key.toLowerCase(), parseFloat(value).toFixed(2)])
+    );
     return updatedPriceData;
 }
 
-let updatedPriceData = optimizer(priceData);
+const updatedPriceData = optimizer(priceData);
 console.log(updatedPriceData) // {apples: '23.40', bananas: '48.00', oranges: '48.76'}
 
 // 3. Задача на фільтрування масиву
@@ -42,22 +41,28 @@ console.log(updatedPriceData) // {apples: '23.40', bananas: '48.00', oranges: '4
 
 // Пепший варіант
 const userNames = ['Петро', 'Емма', 'Юстин', 'Ілля', 'Марта', 'Яна', 'Василь', 'Антон', 'Олена'];
+const vowels = ['а', 'е', 'и', 'і', 'о', 'у', 'я', 'ю', 'є', 'ї'];
+
 let filteredNames = [];
-for (const userName of userNames) {
-    const firstLetter = userName[0].toLowerCase();
-    if (['а', 'е', 'и', 'і', 'о', 'у', 'я', 'ю', 'є', 'ї'].includes(firstLetter)) {
+
+userNames.forEach(userName => {
+    let firstLetter = userName[0].toLowerCase();
+    if (vowels.includes(firstLetter)) {
         filteredNames.push(userName);
     }
-}
+});
 
 console.log(filteredNames); // ['Емма', 'Юстин', 'Ілля', 'Яна', 'Антон', 'Олена']
 
 // Другий ваірант
 
 const userNamesTwo = ['Петро', 'Емма', 'Юстин', 'Ілля', 'Марта', 'Яна', 'Василь', 'Антон', 'Олена'];
+
+const vowels = ['а', 'е', 'и', 'і', 'о', 'у', 'я', 'ю', 'є', 'ї'];
+
 let filteredNamesTwo = userNamesTwo.filter(userName => {
     const firstLetter = userName[0].toLowerCase();
-    return ['а', 'е', 'и', 'і', 'о', 'у', 'я', 'ю', 'є', 'ї'].includes(firstLetter);
+    return vowels.includes(firstLetter);
 });
 
 console.log(filteredNamesTwo); // ['Емма', 'Юстин', 'Ілля', 'Яна', 'Антон', 'Олена']
@@ -65,12 +70,9 @@ console.log(filteredNamesTwo); // ['Емма', 'Юстин', 'Ілля', 'Яна
 
 // 4. Задача на повернення ініціалів для кожного імені з масиву, посортованих в алфавітному порядку
 // Рішення має працювати незалежно від конкретних значень в масиві імен
-// const userNames = ["Петрик Ольга Іванівна", "Гнатюк Петро Антонович", "Рудко Андрій Опанасович"];
-let initials = userNames.map(userName => {
-    const nameComponents = userName.split(' ');
-    const firstLetter = nameComponents.map(component => component.charAt(0));
-    return firstLetter.join('');
-});
+const userNames = ["Петрик Ольга Іванівна", "Гнатюк Петро Антонович", "Рудко Андрій Опанасович"];
+
+let initials = userNames.map(userName => userName.split(' ').map(component => component[0]).join(''));
 
 initials.sort();
 
