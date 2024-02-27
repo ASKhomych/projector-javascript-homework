@@ -18,3 +18,4 @@
 // function multiply(a) {
 // 	// тут ваш код*
 // }
+
