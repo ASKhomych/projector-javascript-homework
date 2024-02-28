@@ -9,20 +9,18 @@
 // // 1
 // // BOOM!
 
-let delay = 3;
-
 function detonatorTimer(delay) {
     let intervalId = setInterval(() => {
         console.log(`Залишилось ${(delay--)}`);
 
-        if (delay <= 0){
+        if (delay === 0){
             clearInterval(intervalId);
             console.log('BOOM')
         };
     }, 1000);
 }
 
-detonatorTimer(delay);
+detonatorTimer(3);
 
 // 2. Напишіть функцію detonatorTimer(delay) використовуючи вкладений setTimeout  
 // Вона виводить в консоль число кожну секунду, починаючи з delay (ціле число) і в кінці замість 0 виведе 'BOOM!'
@@ -32,19 +30,17 @@ detonatorTimer(delay);
 // // 1
 // // BOOM!
 
-const delay = 1000;
-let count = 3;
 
-function detonatorTimer() {
-    console.log(`Залишилось ${(count--)}`);
-    if (count >= 1) {
-        setTimeout(detonatorTimer, delay)
-    } else{
-        console.log('BOOM');
+function detonatorTimer(delay, count) {
+    console.log(`Залишилось ${count}`);
+    if (count === 1) {
+        setTimeout(() => console.log('BOOM'), delay);
+    } else {
+        setTimeout(() => detonatorTimer(delay, count - 1), delay);
     }
-};
+}
 
-detonatorTimer();
+detonatorTimer(1000, 3);
 
 // 3. Напишіть об'єкт в якому опишіть свої довільні властивості та довільні методи що ці властивості виводять. 
 // Наприклад:
@@ -78,10 +74,10 @@ me.describeMyMood.apply(me, ['energetic']);
 // 4. А тепер зробіть всі свої методи з попередньої задачі прив'язаними до контексту свого об'єкту
 // Аби вони були захищені від перезапису об'єкту і їх можна було викликати в таймері:
 
-let securedSelfIntroduce = me.introduce.bind(me);
-let securedSelfPrognose = me.prognose.call(me, 18);
-let securedSelfDescribeMyMood = me.describeMyMood.apply(me, ['energetic']);
+let securedSelfIntroduce = () => setTimeout(() => me.introduce(), 1000);
+let securedSelfPrognose = () => setTimeout(() => me.prognose(18), 2000);
+let securedSelfDescribeMyMood = () => setTimeout(() => me.describeMyMood('energetic'), 3000);
 
-setTimeout(securedSelfIntroduce, 1000);
-setTimeout(securedSelfPrognose, 2000);
-setTimeout(securedSelfDescribeMyMood, 3000);
+securedSelfIntroduce();
+securedSelfPrognose();
+securedSelfDescribeMyMood();
