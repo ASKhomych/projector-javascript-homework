@@ -31,16 +31,16 @@ detonatorTimer(3);
 // // BOOM!
 
 
-function detonatorTimer(delay, count) {
-    console.log(`Залишилось ${count}`);
-    if (count === 1) {
-        setTimeout(() => console.log('BOOM'), delay);
+function detonatorTimer(delay) {
+    if (delay === 0) {
+        console.log('BOOM!');
     } else {
-        setTimeout(() => detonatorTimer(delay, count - 1), delay);
+        console.log(`Залишилось ${delay}`);
+        setTimeout(() => detonatorTimer(delay - 1), 1000);
     }
 }
 
-detonatorTimer(1000, 3);
+detonatorTimer(3);
 
 // 3. Напишіть об'єкт в якому опишіть свої довільні властивості та довільні методи що ці властивості виводять. 
 // Наприклад:
@@ -53,20 +53,22 @@ let me = {
 	hobby: 'football',
 	defaultMood: 'focused',
 	currentMood: 'sleepy',
-	introduce() {
-		console.log(`My name is ${this.name} and I live in ${this.residency}`);
-	},
-	prognose(newAge) {
-		console.log(`I hope that next year I'm gonna be ${this.age + 1}, but I wanna be ${newAge}`);
-	},
-	describeMyMood(tomorrowMood) {
-		console.log(`Mostly I'm ${this.defaultMood}, but now I'm ${this.currentMood}, but tomorrow I will be ${tomorrowMood}`);
-	}
+    introduce() {
+        console.log(`I hope that next year I'm gonna be ${this.age + 1},`);
+    },
+    prognose() {
+        console.log(`Happy birthday! I'm now ${this.age + 1} years old.`);
+    },
+    describeMyMood(newMood) {
+		this.currentMood = newMood;
+        console.log(`Mostly I'm ${this.defaultMood}, but now I'm ${this.currentMood}`);
+    }
 };
 
-me.introduce.bind(me);
-me.prognose.call(me, 18);
-me.describeMyMood.apply(me, ['energetic']);
+me.introduce();
+me.prognose();
+me.describeMyMood('energetic');
+
 
 // Можете описати скільки хочете властивостей і не менше 2 методів.
 // Не соромтесь)
@@ -74,10 +76,11 @@ me.describeMyMood.apply(me, ['energetic']);
 // 4. А тепер зробіть всі свої методи з попередньої задачі прив'язаними до контексту свого об'єкту
 // Аби вони були захищені від перезапису об'єкту і їх можна було викликати в таймері:
 
-let securedSelfIntroduce = () => setTimeout(() => me.introduce(), 1000);
-let securedSelfPrognose = () => setTimeout(() => me.prognose(18), 2000);
-let securedSelfDescribeMyMood = () => setTimeout(() => me.describeMyMood('energetic'), 3000);
+let securedSelfIntroduce = me.introduce.bind(me);
+let securedSelfPrognose = me.prognose.bind(me);
+let securedSelfDescribeMyMood = me.describeMyMood.bind(me);
 
-securedSelfIntroduce();
-securedSelfPrognose();
-securedSelfDescribeMyMood();
+setTimeout(securedSelfIntroduce, 1000); // виведе коректний результат
+setTimeout(securedSelfPrognose, 2000); // виведе коректний результат
+setTimeout(() => securedSelfDescribeMyMood('easy'), 3000); // виведе коректний результат
+
