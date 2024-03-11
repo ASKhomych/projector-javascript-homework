@@ -17,20 +17,20 @@ function durationBetweenDates(startDateStr = '1970-01-01', endDateStr = '1970-01
 
     switch (unit) {
         case 'days':
-            return Math.floor(diff / (1000 * 60 * 60 * 24));
+            return `${Math.floor(diff / (1000 * 60 * 60 * 24))} days`;
         case 'hours':
-            return Math.floor(diff / (1000 * 60 * 60));
+            return `${Math.floor(diff / (1000 * 60 * 60))} hours`;
         case 'minutes':
-            return Math.floor(diff / (1000 * 60));
+            return `${Math.floor(diff / (1000 * 60))} minutes`;
         case 'seconds':
-            return Math.floor(diff / 1000);
+            return `${Math.floor(diff / 1000)} seconds`;
         default:
             return 'Invalid unit';
     }
 }
 
 console.log(durationBetweenDates('2020-06-01', '2024-10-01', 'seconds')); 
-console.log(durationBetweenDates('2022-01-31', '2021-02-03', 'days'));
+console.log(durationBetweenDates('2021-02-02', '2021-02-03', 'days'));
 
 
 // 2. Масив унікальних значень
