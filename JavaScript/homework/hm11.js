@@ -34,18 +34,30 @@ const movies = [
 ];
 
 function byProperty(property, direction) {
-    return function (a, b) {
-        let comparison = 0;
-        if (a[property] > b[property]) {
-            comparison = 1;
-        } else if (a[property] < b[property]) {
-            comparison = -1;
-        }
-        return direction === '>' ? comparison : -comparison;
+    if (direction === '>') {
+        return function(a, b) {
+            let comparison = 0;
+            if (a[property] > b[property]) {
+                comparison = 1;
+            } else if (a[property] < b[property]) {
+                comparison = -1;
+            }
+            return comparison;
+        };
+    } else if (direction === '<') {
+        return function(a, b) {
+            let comparison = 0;
+            if (a[property] < b[property]) {
+                comparison = 1;
+            } else if (a[property] > b[property]) {
+                comparison = -1;
+            }
+            return comparison;
+        };
     };
 };
 
-console.log(movies.sort(byProperty('releaseYear', '>'))); 
+ console.log(movies.sort(byProperty('releaseYear', '<'))); 
 // виведе масив фільмів посортованих по року випуску, від старішого до новішого
  console.log(movies.sort(byProperty('runningTimeInMinutes', '<'))); 
 // виведе масив фільмів посортованих по їх тривалості, від найдовшого до найкоротшого
