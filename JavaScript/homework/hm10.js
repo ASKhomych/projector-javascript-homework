@@ -17,13 +17,13 @@ function durationBetweenDates(startDateStr = '1970-01-01', endDateStr = '1970-01
 
     switch (unit) {
         case 'days':
-            return `${Math.floor(diff / (1000 * 60 * 60 * 24))} days`;
+            return `${Math.floor(diff / (1000 * 60 * 60 * 24))} ${unit}`;
         case 'hours':
-            return `${Math.floor(diff / (1000 * 60 * 60))} hours`;
+            return `${Math.floor(diff / (1000 * 60 * 60))} ${unit}`;
         case 'minutes':
-            return `${Math.floor(diff / (1000 * 60))} minutes`;
+            return `${Math.floor(diff / (1000 * 60))} ${unit}`;
         case 'seconds':
-            return `${Math.floor(diff / 1000)} seconds`;
+            return `${Math.floor(diff / 1000)} ${unit}`;
         default:
             return 'Invalid unit';
     }
