@@ -20,7 +20,7 @@ let navigation = document.getElementById('headerTwo');
 let firstSection = document.querySelector('section');
 
 // для елементу списку з текстом 'Пункт 5'
-let listItemFive = document.getElementsByClassName('text')[3]; 
+let listItemFive = document.querySelector('.text:nth-of-type(4)');
 
 // для елементу з класом 'hatredLevelBlock'
 let hatredLevelBlock = document.querySelector('.hatredLevelBlock');
