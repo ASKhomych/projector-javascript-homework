@@ -14,26 +14,41 @@ const button = document.getElementById('toggleButton');
 const message = document.getElementById('message');
 
 // Визначення останнього стану кнопки з локального сховища
-const lastState = localStorage.getItem('buttonState');
-    if (lastState === 'on') {
+const mode = localStorage.getItem('buttonState');
+if (mode === 'on') {
     toggleButton();
+}
+
+// Остання дата зміни кнопки з локального сховища
+const lastClick = localStorage.getItem('lastAction');
+if (lastClick) {
+    const lastClickDate = localStorage.getItem('lastActionDate');
+    if (lastClickDate) {
+        message.textContent = `Last ${lastClick.toLowerCase()}: ${lastClickDate}`;
+        message.style.display = 'block';
+    }
 }
 
 button.addEventListener('click', toggleButton);
 
 function toggleButton() {
+    const date = getFormattedDate();
     if (button.textContent === 'Turn off') {
-        document.body.style.backgroundColor = '#222'; // темний фон
+        document.body.style.backgroundColor = '#222'; // Темний фон
         button.textContent = 'Turn on';
-        message.textContent = `Last turn off: ${getFormattedDate()}`;
+        message.textContent = `Last turn off: ${date}`;
         message.style.display = 'block';
         localStorage.setItem('buttonState', 'off');
+        localStorage.setItem('lastAction', 'Turn off');
+        localStorage.setItem('lastActionDate', date);
     } else {
-        document.body.style.backgroundColor = '#f0f0f0'; // світлий фон
+        document.body.style.backgroundColor = '#f0f0f0'; // Світлий фон
         button.textContent = 'Turn off';
-        message.textContent = `Last turn on: ${getFormattedDate()}`;
+        message.textContent = `Last turn on: ${date}`;
         message.style.display = 'block';
         localStorage.setItem('buttonState', 'on');
+        localStorage.setItem('lastAction', 'Turn on');
+        localStorage.setItem('lastActionDate', date);
     }
 }
 
