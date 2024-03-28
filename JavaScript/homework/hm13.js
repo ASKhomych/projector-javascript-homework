@@ -13,47 +13,47 @@
 const button = document.getElementById('toggleButton');
 const message = document.getElementById('message');
 
-// Визначення останнього стану кнопки з локального сховища
-const mode = localStorage.getItem('buttonState');
-if (mode === 'on') {
-    toggleButton();
-}
-
-// Остання дата зміни кнопки з локального сховища
-const lastClick = localStorage.getItem('lastAction');
-if (lastClick) {
-    const lastClickDate = localStorage.getItem('lastActionDate');
-    if (lastClickDate) {
-        message.textContent = `Last ${lastClick.toLowerCase()}: ${lastClickDate}`;
-        message.style.display = 'block';
-    }
-}
-
-button.addEventListener('click', toggleButton);
-
-function toggleButton() {
-    const date = getFormattedDate();
-    if (button.textContent === 'Turn off') {
-        document.body.style.backgroundColor = '#222'; // Темний фон
-        button.textContent = 'Turn on';
-        message.textContent = `Last turn off: ${date}`;
-        message.style.display = 'block';
-        localStorage.setItem('buttonState', 'off');
-        localStorage.setItem('lastAction', 'Turn off');
-        localStorage.setItem('lastActionDate', date);
-    } else {
+// Перевірка та відновлення стану з localStorage при завантаженні сторінки
+function restoreState() {
+    const mode = localStorage.getItem('buttonState');
+    const lastActionDate = localStorage.getItem('lastActionDate');
+    if (mode === 'on') {
         document.body.style.backgroundColor = '#f0f0f0'; // Світлий фон
         button.textContent = 'Turn off';
-        message.textContent = `Last turn on: ${date}`;
+        message.textContent = `Last turned on: ${lastActionDate}`;
+    } else if (mode === 'off') {
+        document.body.style.backgroundColor = '#222'; // Темний фон
+        button.textContent = 'Turn on';
+        message.textContent = `Last turned off: ${lastActionDate}`;
+    }
+    if (lastActionDate) {
         message.style.display = 'block';
-        localStorage.setItem('buttonState', 'on');
-        localStorage.setItem('lastAction', 'Turn on');
-        localStorage.setItem('lastActionDate', date);
     }
 }
+
+button.addEventListener('click', function() {
+    const currentState = button.textContent.includes('Turn off') ? 'off' : 'on';
+    const date = getFormattedDate();
+    if (currentState === 'off') {
+        document.body.style.backgroundColor = '#222';
+        button.textContent = 'Turn on';
+        message.textContent = `Last turned off: ${date}`;
+        localStorage.setItem('buttonState', 'off');
+    } else {
+        document.body.style.backgroundColor = '#f0f0f0';
+        button.textContent = 'Turn off';
+        message.textContent = `Last turned on: ${date}`;
+        localStorage.setItem('buttonState', 'on');
+    }
+    localStorage.setItem('lastActionDate', date);
+    message.style.display = 'block';
+});
 
 function getFormattedDate() {
     const date = new Date();
     const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' };
     return date.toLocaleDateString('en-GB', options);
 }
+
+// Відновлюємо попередній стан при завантаженні/оновленні сторінки
+restoreState();
